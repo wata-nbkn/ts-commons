@@ -1,0 +1,22 @@
+{
+  "name": "@wata-nbkn/ts-commons",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wata-nbkn/ts-commons.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wata-nbkn/ts-commons/issues"
+  },
+  "homepage": "https://github.com/wata-nbkn/ts-commons#readme",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  }
+}
