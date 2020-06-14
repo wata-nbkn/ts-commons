@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "test": "jest --config=jest/jest.config.js --detectOpenHandles --no-cache",
-    "build": "ttsc"
+    "build": "ttsc -p tsconfig.build.json"
   },
   "author": "",
   "dependencies": {
