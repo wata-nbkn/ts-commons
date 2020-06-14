@@ -10,3 +10,15 @@ export interface MongoDocument {
   date?: string;
   [key: string]: any;
 }
+
+export interface DateRange {
+  from?: string;
+  to?: string;
+}
+
+export interface DateRangeCriteria {
+  $gte?: string;
+  $lte?: string;
+  $gt?: string;
+  $lt?: string;
+}
