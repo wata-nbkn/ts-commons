@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "test": "jest --config=jest/jest.config.js --detectOpenHandles --no-cache",
-    "build": "ttsc -p tsconfig.build.json"
+    "version-up": "npm version patch -git-tag-version false",
+    "build": "npm run version-up && ttsc -p tsconfig.build.json"
   },
   "author": "",
   "dependencies": {
