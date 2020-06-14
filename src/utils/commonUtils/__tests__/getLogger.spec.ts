@@ -6,7 +6,7 @@ import { sleep } from '../sleep';
 
 describe('getLogger', () => {
   const fileName = moment().format('YYYYMMDD') + '.log';
-  const expectedFilePath = `./logs/utils/__tests__/getLogger.spec/${fileName}`;
+  const expectedFilePath = `./logs/utils/commonUtils/__tests__/getLogger.spec/${fileName}`;
   let logger: Logger;
 
   beforeAll(() => {
