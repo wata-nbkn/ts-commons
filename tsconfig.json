@@ -16,7 +16,7 @@
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
-    "typeRoots": ["node_modules/@types"]
+    "typeRoots": ["node_modules/@types", "types"]
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "jest"]
