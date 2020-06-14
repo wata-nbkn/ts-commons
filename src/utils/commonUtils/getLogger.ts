@@ -2,7 +2,7 @@ import * as log4js from 'log4js';
 import * as moment from 'moment';
 import * as path from 'path';
 import * as appRoot from 'app-root-path';
-import { getRelativeDirPathFromRoot } from 'fileUtils';
+import { getRelativeDirPathFromRoot } from 'utils/fileUtils';
 
 type LOG_LEVEL = 'ERROR' | 'WARN' | 'INFO' | 'DEBUG' | 'TRACE';
 
