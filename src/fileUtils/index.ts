@@ -1,0 +1,1 @@
+export { getRelativeDirPathFromRoot } from './getRelativeDirPathFromRoot';
