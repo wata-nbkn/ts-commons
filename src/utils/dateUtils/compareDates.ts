@@ -15,17 +15,17 @@ const compareDate = (baseDate: string, compDate: string, currentFormat?: string)
   return 0;
 };
 
-export const isBeforeDate = (baseDate: string, compDate: string, currentFormat?: string) =>
+export const isBefore = (baseDate: string, compDate: string, currentFormat?: string) =>
   compareDate(baseDate, compDate, currentFormat) === -1;
 
-export const isAfterDate = (baseDate: string, compDate: string, currentFormat?: string) =>
+export const isAfter = (baseDate: string, compDate: string, currentFormat?: string) =>
   compareDate(baseDate, compDate, currentFormat) === 1;
 
-export const isSameDate = (baseDate: string, compDate: string, currentFormat?: string) =>
+export const isSame = (baseDate: string, compDate: string, currentFormat?: string) =>
   compareDate(baseDate, compDate, currentFormat) === 0;
 
-export const isSameOrBeforeDate = (baseDate: string, compDate: string, currentFormat?: string) =>
-  isSameDate(baseDate, compDate, currentFormat) || isBeforeDate(baseDate, compDate, currentFormat);
+export const isSameOrBefore = (baseDate: string, compDate: string, currentFormat?: string) =>
+  isSame(baseDate, compDate, currentFormat) || isBefore(baseDate, compDate, currentFormat);
 
-export const isSameOrAfterDate = (baseDate: string, compDate: string, currentFormat?: string) =>
-  isSameDate(baseDate, compDate, currentFormat) || isAfterDate(baseDate, compDate, currentFormat);
+export const isSameOrAfter = (baseDate: string, compDate: string, currentFormat?: string) =>
+  isSame(baseDate, compDate, currentFormat) || isAfter(baseDate, compDate, currentFormat);
