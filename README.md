@@ -20,6 +20,9 @@ import { getLogger } from '@wata-nbkn/ts-commons/lib/utils';
 #### Commands
 
 - test: `$ npm run test`
+  - You can run a single test by `$ npm run test <path_to_test_file>`
+  - _NOTE: When you run the mongo connector tests, you need to set `TEST_MONGO_SERVER_HOST_NAME` and `TEST_MONGO_PROT` env._
+
 
 - build: `$ npm run build`
   - The built files will be distributed to `libs` folder.
