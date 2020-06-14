@@ -12,7 +12,7 @@ Then, you can import the modules in your ts files.
 e.g.
 
 ```.js
-import { getLogger } from '@wata-nbkn/ts-commons/lib/utils';
+import { DateUtil } from '@wata-nbkn/ts-commons/lib/utils';
 ```
 
 ### For development
