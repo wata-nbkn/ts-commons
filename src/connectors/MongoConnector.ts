@@ -1,7 +1,7 @@
 import { MongoClient, Db, InsertWriteOpResult, FindOneOptions } from 'mongodb';
 import { Logger } from 'log4js';
 import { getLogger, sleep } from 'utils/commonUtils';
-import { MongoDocument, ErrorResponse } from 'types';
+import { MongoDocument, ErrorResponse } from '../types';
 
 const CONNECT_OPTIONS = {
   useNewUrlParser: true,
@@ -28,7 +28,7 @@ export class MongoConnector {
   private client: MongoClient | null;
   private logger: Logger;
 
-  private constructor(hostname: string, port: number, dbName: string) {
+  protected constructor(hostname: string, port: number, dbName: string) {
     this.baseUrl = `mongodb://${hostname}:${port}/`;
     this.dbName = dbName;
     this.db = null;

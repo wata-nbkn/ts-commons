@@ -1,1 +1,1 @@
-export { MongoConnector } from './MongoConnector';
+export { MongoConnector, FetchResult, InsertResult } from './MongoConnector';
