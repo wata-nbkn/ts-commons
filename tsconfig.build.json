@@ -16,7 +16,8 @@
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
-    "typeRoots": ["node_modules/@types", "types"]
+    "typeRoots": ["node_modules/@types", "types"],
+    "plugins": [{ "transform": "typescript-transform-paths" }]
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "jest", "test", "__tests__", "**/*.spec.ts"]
