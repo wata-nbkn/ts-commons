@@ -14,6 +14,28 @@ describe('buildDateRangeCriteria', () => {
     expect(result).toEqual(expected);
   });
 
+  it('should return the date range without from date', () => {
+    const range = {
+      to: '2019/12/02',
+    };
+    const expected = {
+      $lte: '2019/12/02',
+    };
+    const result = buildDateRangeCriteria(undefined, range.to);
+    expect(result).toEqual(expected);
+  });
+
+  it('should return the date range without to date', () => {
+    const range = {
+      from: '2019/12/01',
+    };
+    const expected = {
+      $gte: '2019/12/01',
+    };
+    const result = buildDateRangeCriteria(range.from, undefined);
+    expect(result).toEqual(expected);
+  });
+
   it('should not return the range when an invalid "from" date is provided', () => {
     const range = {
       from: 'test',

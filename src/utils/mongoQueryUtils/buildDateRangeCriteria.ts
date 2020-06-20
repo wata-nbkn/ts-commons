@@ -1,24 +1,28 @@
 import { DateRangeCriteria } from 'types';
 import * as DateUtil from '../dateUtils';
 
-export const buildDateRangeCriteria = (from: string, to: string) => {
+export const buildDateRangeCriteria = (from?: string, to?: string) => {
   let query: any = {};
-  if (!DateUtil.isValid(from)) {
-    return null;
+  if (from) {
+    if (!DateUtil.isValid(from)) {
+      return null;
+    }
+    query = {
+      $gte: from,
+    };
   }
-  query = {
-    $gte: from,
-  };
 
-  if (!DateUtil.isValid(to)) {
-    return null;
+  if (to) {
+    if (!DateUtil.isValid(to)) {
+      return null;
+    }
+    query = {
+      ...query,
+      $lte: to,
+    };
   }
-  query = {
-    ...query,
-    $lte: to,
-  };
 
-  if (DateUtil.isAfter(from, to)) {
+  if (from && to && DateUtil.isAfter(from, to)) {
     return null;
   }
 
