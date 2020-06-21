@@ -1,7 +1,7 @@
 import { MongoClient, Db, InsertWriteOpResult, FindOneOptions } from 'mongodb';
 import { Logger } from 'log4js';
 import { getLogger, sleep } from 'utils/commonUtils';
-import { MongoDocument, ErrorResponse } from '../types';
+import { MongoDocument, ErrorResponse } from 'types';
 
 const CONNECT_OPTIONS = {
   useNewUrlParser: true,
