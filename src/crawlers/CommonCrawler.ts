@@ -6,15 +6,13 @@ export class CommonCrawler {
   private logger: Logger;
   private browser: puppeteer.Browser;
   private page: puppeteer.Page;
-  private url: string;
 
   constructor() {
     this.logger = CommonUtil.getLogger(__filename);
   }
 
-  public async init(url: string, headless = true) {
-    this.logger.debug(`Initialize: url = ${url}`);
-    this.url = url;
+  public async init(headless = true) {
+    this.logger.debug('Initialize');
     this.browser = await puppeteer.launch({ headless });
     this.page = await this.browser.newPage();
   }
@@ -24,11 +22,16 @@ export class CommonCrawler {
     this.logger.debug('Exit');
   }
 
-  public async getPageBody() {
+  public async getPageBody(url: string) {
     this.logger.debug('Enter:: getPageBody');
 
-    await this.page.goto(this.url, { waitUntil: 'domcontentloaded' });
-    await this.page.waitFor(2000);
+    try {
+      await this.page.goto(url, { waitUntil: 'domcontentloaded' });
+      await this.page.waitFor(2000);
+    } catch (e) {
+      this.logger.error(e);
+      return null;
+    }
 
     let body = null;
     try {

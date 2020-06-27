@@ -5,7 +5,7 @@ describe('CommonCrawler', () => {
 
   beforeAll(async () => {
     crawler = new CommonCrawler();
-    await crawler.init('https://www.google.com/');
+    await crawler.init();
   });
 
   afterAll(async () => {
@@ -13,8 +13,13 @@ describe('CommonCrawler', () => {
   });
 
   it('should get page body', async () => {
-    const body = await crawler.getPageBody();
+    const body = await crawler.getPageBody('https://www.google.com/');
     expect(body).toBeTruthy();
     expect(body).toMatch('<body');
+  });
+
+  it('should return null with an invalid page', async () => {
+    const result = await crawler.getPageBody('http://localhost:1111');
+    expect(result).toBeNull();
   });
 });
