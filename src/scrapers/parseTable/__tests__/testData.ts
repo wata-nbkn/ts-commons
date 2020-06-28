@@ -1,6 +1,6 @@
 export const basicTable = `
 <body>
-  <table>
+  <table class="test-table">
     <thead>
       <tr>
         <th> head1 </th>
@@ -15,6 +15,10 @@ export const basicTable = `
       <tr>
         <td>val21</td>
         <td>va<br />l22</td>
+      </tr>
+      <tr>
+        <td> 1000 </td>
+        <td>200<br />0</td>
       </tr>
     </tbody>
   </table>

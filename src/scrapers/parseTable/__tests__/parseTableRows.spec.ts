@@ -11,6 +11,7 @@ describe('parseTableRows', () => {
     expect(result[0]).toEqual(['head1', 'head2']);
     expect(result[1]).toEqual(['val11', 'val12']);
     expect(result[2]).toEqual(['val21', 'val22']);
+    expect(result[3]).toEqual([1000, 2000]);
   });
 
   it('should return rows when not including th', () => {

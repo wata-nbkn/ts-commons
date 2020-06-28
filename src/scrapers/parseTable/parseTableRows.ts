@@ -1,3 +1,5 @@
+import { MathUtil } from 'utils';
+
 export const parseTableRows = ($: CheerioStatic, table: Cheerio) => {
   const rows: string[][] = [];
 
@@ -6,7 +8,10 @@ export const parseTableRows = ($: CheerioStatic, table: Cheerio) => {
     const cells: string[] = [];
 
     const pushCell = (v: CheerioElement) => {
-      const value = $(v).text().trim();
+      let value: any = $(v).text().trim();
+      if (MathUtil.isNumber(value)) {
+        value = Number(value);
+      }
       cells.push(value);
     };
 
