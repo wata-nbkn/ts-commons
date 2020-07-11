@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as mkDirP from 'mkdirp';
 import { getLogger } from 'utils/commonUtils';
+import { INTERNAL_LOGDIR_PATH } from 'consts';
 
 export async function mkdirp(dirPath: string) {
   return new Promise((resolve, reject) => {
@@ -8,7 +9,7 @@ export async function mkdirp(dirPath: string) {
       return resolve(true);
     }
 
-    const logger = getLogger(__filename);
+    const logger = getLogger(`${INTERNAL_LOGDIR_PATH}/mkdirp`);
     mkDirP(dirPath, (err) => {
       if (err) {
         logger.error(`Fail to make dir: ${dirPath}`);

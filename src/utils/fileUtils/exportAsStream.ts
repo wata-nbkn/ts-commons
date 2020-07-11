@@ -1,12 +1,13 @@
 import * as fs from 'fs';
 import { getLogger } from 'utils/commonUtils';
+import { INTERNAL_LOGDIR_PATH } from 'consts';
 
 export const exportAsStream = (
   outputStr: string,
   saveFilePath: string,
   options?: { append?: boolean; callback?: () => void }
 ) => {
-  const logger = getLogger(__filename);
+  const logger = getLogger(`${INTERNAL_LOGDIR_PATH}/exportAsStream`);
   logger.debug(`Enter [exportAsStream]`);
 
   const { append = true, callback } = options || {};
