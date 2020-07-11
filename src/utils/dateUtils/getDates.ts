@@ -2,7 +2,7 @@ import * as moment from 'moment';
 import { DEFAULT_DATE_FORMAT } from 'consts';
 import { getMoment } from './getMoment';
 
-export const getToday = () => moment().format(DEFAULT_DATE_FORMAT);
+export const getToday = (format = DEFAULT_DATE_FORMAT) => moment().format(format);
 
 export const getCurrentYear = () => moment().year();
 

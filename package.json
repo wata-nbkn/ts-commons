@@ -1,9 +1,9 @@
 {
   "name": "@wata-nbkn/ts-commons",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "",
   "scripts": {
-    "test": "jest --config=jest/jest.config.js --detectOpenHandles --no-cache",
+    "test": "jest --config=jest/jest.config.js",
     "version-up": "npm version patch -git-tag-version false",
     "build": "npm run version-up && ttsc -p tsconfig.build.json"
   },

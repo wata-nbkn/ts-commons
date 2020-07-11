@@ -6,6 +6,11 @@ describe('Get Dates', () => {
     expect(result).toBeTruthy();
   });
 
+  it('getToday with format', () => {
+    const result = getToday('YYYY-MM-DD');
+    expect(result.split('-')).toHaveLength(3);
+  });
+
   it('getCurrentMonth', () => {
     const result = getCurrentMonth();
     expect(result).toBeTruthy();
