@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import { getLogger } from './getLogger';
+import { getLogger } from '../commonUtils/getLogger';
 import { INTERNAL_LOGDIR_PATH } from 'consts';
 
 export const loadJsonFile = (filePath: string) => {
