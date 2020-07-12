@@ -1,11 +1,8 @@
 import * as fs from 'fs';
+import { loadJsonFile } from './loadJsonFile';
 
 export const updateJsonFile = (filePath: string, newData: object) => {
-  let data = {};
-  if (fs.existsSync(filePath)) {
-    const content = fs.readFileSync(filePath, 'utf-8');
-    data = JSON.parse(content);
-  }
+  let data = loadJsonFile(filePath) || {};
   data = {
     ...data,
     ...newData,

@@ -12,7 +12,10 @@ describe('updateJsonFile', () => {
   });
 
   afterAll(() => {
-    fs.writeFileSync(filePath, '');
+    const data = {
+      test: 100,
+    };
+    fs.writeFileSync(filePath, JSON.stringify(data));
   });
 
   it('should update json in file', () => {
