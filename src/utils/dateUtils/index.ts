@@ -6,3 +6,4 @@ export { getNextDate } from './getNextDate';
 export { getNextDateByDayOfWeek } from './getNextDateByDayOfWeek';
 export { getPreviousDate } from './getPreviousDate';
 export { isAfter, isBefore, isSame, isSameOrAfter, isSameOrBefore } from './compareDates';
+export { dateDiff } from './dateDiff';
