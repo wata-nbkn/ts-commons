@@ -1,6 +1,6 @@
 {
   "name": "@wata-nbkn/ts-commons",
-  "version": "1.0.29",
+  "version": "1.0.30",
   "description": "",
   "scripts": {
     "test": "jest --config=jest/jest.config.js",
