@@ -1,16 +1,16 @@
 import * as fs from 'fs';
 import * as moment from 'moment';
 import { Logger } from 'log4js';
-import { getLogger } from '../getLogger';
+import { LogUtil } from '../LogUtil';
 import { sleep } from '../../commonUtils/sleep';
 
-describe('getLogger', () => {
+describe('LogUtil', () => {
   const fileName = moment().format('YYYYMMDD') + '.log';
-  const expectedFilePath = `./logs/utils/logUtils/__tests__/getLogger.spec/${fileName}`;
+  const expectedFilePath = `./logs/utils/logUtils/__tests__/LogUtil.spec/${fileName}`;
   let logger: Logger;
 
   beforeAll(() => {
-    logger = getLogger(__filename, 'DEBUG');
+    logger = LogUtil.getLogger(__filename, 'DEBUG');
   });
 
   it('should make a log file', async () => {
