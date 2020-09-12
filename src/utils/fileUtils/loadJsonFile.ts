@@ -1,9 +1,9 @@
 import * as fs from 'fs';
-import { getLogger } from '../commonUtils/getLogger';
+import { LogUtil } from '../logUtils';
 import { INTERNAL_LOGDIR_PATH } from 'consts';
 
 export const loadJsonFile = (filePath: string) => {
-  const logger = getLogger(`${INTERNAL_LOGDIR_PATH}/loadJsonFile`);
+  const logger = LogUtil.getLogger(`${INTERNAL_LOGDIR_PATH}/fileUtils`);
 
   let content = '';
   if (fs.existsSync(filePath)) {

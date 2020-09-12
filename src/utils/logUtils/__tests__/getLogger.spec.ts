@@ -2,11 +2,11 @@ import * as fs from 'fs';
 import * as moment from 'moment';
 import { Logger } from 'log4js';
 import { getLogger } from '../getLogger';
-import { sleep } from '../sleep';
+import { sleep } from '../../commonUtils/sleep';
 
 describe('getLogger', () => {
   const fileName = moment().format('YYYYMMDD') + '.log';
-  const expectedFilePath = `./logs/utils/commonUtils/__tests__/getLogger.spec/${fileName}`;
+  const expectedFilePath = `./logs/utils/logUtils/__tests__/getLogger.spec/${fileName}`;
   let logger: Logger;
 
   beforeAll(() => {

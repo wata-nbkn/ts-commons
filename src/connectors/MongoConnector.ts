@@ -1,6 +1,8 @@
 import { MongoClient, Db, InsertWriteOpResult, FindOneOptions } from 'mongodb';
 import { Logger } from 'log4js';
-import { getLogger, sleep } from 'utils/commonUtils';
+import { sleep } from 'utils/commonUtils';
+import { LogUtil } from 'utils/logUtils';
+
 import { MongoDocument, ErrorResponse } from 'types';
 import { INTERNAL_LOGDIR_PATH } from 'consts';
 
@@ -34,7 +36,7 @@ export class MongoConnector {
     this.baseUrl = `mongodb://${hostname}:${port}/`;
     this.dbName = dbName;
     this.db = null;
-    this.logger = getLogger(logDirPath || `${INTERNAL_LOGDIR_PATH}/MongoConnector`);
+    this.logger = LogUtil.getLogger(logDirPath || `${INTERNAL_LOGDIR_PATH}/MongoConnector`);
     this.logger.trace(`Mongo URL: ${this.baseUrl}`);
     this.logger.debug(`MongoConnector for ${dbName} is initialized`);
   }

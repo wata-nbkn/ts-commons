@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import { getLogger } from 'utils/commonUtils';
+import { LogUtil } from 'utils/logUtils';
 import { INTERNAL_LOGDIR_PATH } from 'consts';
 
 export const exportAsStream = (
@@ -7,8 +7,8 @@ export const exportAsStream = (
   saveFilePath: string,
   options?: { append?: boolean; callback?: () => void }
 ) => {
-  const logger = getLogger(`${INTERNAL_LOGDIR_PATH}/exportAsStream`);
-  logger.debug(`Enter [exportAsStream]`);
+  const logger = LogUtil.getLogger(`${INTERNAL_LOGDIR_PATH}/fileUtils`);
+  logger.debug(`Enter:: [exportAsStream]`);
 
   const { append = true, callback } = options || {};
   const writeOption = append ? { flags: 'a' } : {};
@@ -25,7 +25,7 @@ export const exportAsStream = (
         callback();
       }
       logger.debug(`Content is exported to ${saveFilePath}`);
-      logger.debug(`Exit [exportAsStream]`);
+      logger.debug(`Exit:: [exportAsStream]`);
     });
   } catch (e) {
     logger.error(`Fail to save file: ${saveFilePath}`);
