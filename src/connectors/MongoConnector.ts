@@ -236,6 +236,7 @@ export class MongoConnector {
       try {
         await this.client.close();
         this.client = null;
+        this.db = null;
         this.logger.info(`Close the connection to ${this.dbName}`);
         await sleep(1000);
       } catch (err) {

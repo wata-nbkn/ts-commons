@@ -185,6 +185,12 @@ describe('MongoConnector', () => {
       expect(result).toBeTruthy();
     });
 
+    it('re-connect', async () => {
+      await mongo.exit();
+      const result = await mongo.ping();
+      expect(result).toBeTruthy();
+    });
+
     it('getAllCollections', async () => {
       const result = await mongo.getAllCollections();
       expect(result).toContain(testDbName);
