@@ -191,6 +191,7 @@ export class MongoConnector {
 
       if (result.error) {
         failList.push(doc._id);
+        this.logger.error(result.error);
       } else {
         this.logger.debug(`${doc._id} is upserted in ${collectionName}`);
       }
