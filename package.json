@@ -1,6 +1,6 @@
 {
   "name": "@wata-nbkn/ts-commons",
-  "version": "1.0.40",
+  "version": "1.0.41",
   "description": "",
   "scripts": {
     "test": "jest --config=jest/jest.config.js",
@@ -9,6 +9,7 @@
   },
   "author": "wata-nbkn",
   "dependencies": {
+    "lodash": "^4.17.20",
     "log4js": "5.3.0",
     "mkdirp": "^0.5.1",
     "moment": "^2.24.0",
@@ -17,6 +18,7 @@
   "devDependencies": {
     "@types/app-root-path": "^1.2.4",
     "@types/jest": "^24.0.25",
+    "@types/lodash": "^4.14.161",
     "@types/log4js": "^2.3.5",
     "@types/mkdirp": "^0.5.2",
     "@types/mongodb": "^3.5.20",
