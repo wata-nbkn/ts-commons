@@ -1,8 +1,6 @@
 .DS_Store
 .env
-package-lock.json
 data
 logs
 node_modules
-dist
 lib
