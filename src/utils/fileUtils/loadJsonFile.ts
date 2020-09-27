@@ -9,7 +9,7 @@ export const loadJsonFile = (filePath: string) => {
   if (fs.existsSync(filePath)) {
     content = fs.readFileSync(filePath, 'utf-8');
   } else {
-    logger.error(`Cannot find file: ${filePath}`);
+    logger.error(`Exit:: [loadJsonFile] -- Cannot find file: ${filePath}`);
     return null;
   }
 
@@ -17,6 +17,7 @@ export const loadJsonFile = (filePath: string) => {
   try {
     data = JSON.parse(content);
   } catch (e) {
+    logger.error(`Exit:: [loadJsonFile] with error`);
     logger.error(e);
     return null;
   }

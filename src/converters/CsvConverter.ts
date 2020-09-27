@@ -1,16 +1,3 @@
-/*!
- * BEGIN_COPYRIGHT
- *
- * Copyright (c) 2020 wata-nbkn. All rights reserved.
- * https://github.com/wata-nbkn
- *
- * This source code or any portion is not published
- * so that it must not be reproduced or used
- * in any manner whatsoever.
- *
- * END_COPYRIGHT
- */
-
 import * as iconv from 'iconv-lite';
 import { Logger } from 'log4js';
 import { LogUtil, MathUtil } from 'utils';
@@ -68,7 +55,7 @@ export class CsvConverter {
     this.logger.trace(`cells = ${cells.join(', ')}`);
 
     if (headers.length !== cells.length) {
-      this.logger.warn('The length of headers and cells are not matched');
+      this.logger.warn(`The length of headers and cells are not matched: cells = ${cells.join(', ')}`);
       this.logger.debug('Exit:: convertRow2Json');
       return {};
     }
