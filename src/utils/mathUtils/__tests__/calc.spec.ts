@@ -1,6 +1,36 @@
-import { div, calcPercentage, calcDiffPercentage } from '../calc';
+import { diff, div, calcPercentage, calcDiffPercentage } from '../calc';
 
 describe('calc', () => {
+  describe('diff', () => {
+    it('should return valid number', () => {
+      let result = diff(5, 3);
+      expect(result).toEqual(2);
+
+      result = diff(3, 5);
+      expect(result).toEqual(-2);
+
+      result = diff(5, 2.5);
+      expect(result).toEqual(2.5);
+
+      result = diff('3', 5);
+      expect(result).toEqual(-2);
+
+      result = diff(0, '0');
+      expect(result).toEqual(0);
+    });
+
+    it('should return `-` when invalid values are provided', () => {
+      let result = diff('a', 3);
+      expect(result).toEqual('-');
+
+      result = diff(3, 'a');
+      expect(result).toEqual('-');
+
+      result = diff(null, 1);
+      expect(result).toEqual('-');
+    });
+  });
+
   describe('div', () => {
     it('should return with 2 digits with truncated', () => {
       const result = div(2, 3);

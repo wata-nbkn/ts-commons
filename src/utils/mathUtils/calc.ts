@@ -27,6 +27,13 @@ const handleDecimal = (val: number, options?: DivOptions) => {
   return val;
 };
 
+export const diff = (valA: any, valB: any) => {
+  if (!validValues(valA, valB)) {
+    return '-';
+  }
+  return Number(valA) - Number(valB);
+};
+
 export const div = (valA: any, valB: any, options?: DivOptions): Value => {
   if (!validValues(valA, valB)) {
     return '-';
