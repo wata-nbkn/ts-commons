@@ -4,3 +4,4 @@ export { stringToEnum } from './stringToEnum';
 export { isMac } from './isMac';
 export { getMemoryConsumptionLog } from './getMemoryConsumptionLog';
 export { stringToBoolean } from './stringToBoolean';
+export { findMaxKeyFromObj } from './findMaxKeyFromObj';
