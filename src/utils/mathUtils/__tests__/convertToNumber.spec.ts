@@ -13,6 +13,8 @@ describe('convertToNumber', () => {
 
     expect(convertToNumber('1,000')).toEqual(1000);
     expect(convertToNumber('1,000.1')).toEqual(1000.1);
+    expect(convertToNumber('1,000.123')).toEqual(1000.123);
+    expect(convertToNumber('1,000.1230')).toEqual(1000.123);
     expect(convertToNumber('1,000,000.000')).toEqual(1000000);
   });
 
@@ -20,6 +22,7 @@ describe('convertToNumber', () => {
     expect(convertToNumber('1,000個')).toEqual(1000);
     expect(convertToNumber('-1,000.100%')).toEqual(-1000.1);
     expect(convertToNumber('+1,000.100%')).toEqual(1000.1);
+    expect(convertToNumber('-1,000.1010%')).toEqual(-1000.101);
     expect(convertToNumber('価格1,000,000円')).toEqual(1000000);
   });
 
