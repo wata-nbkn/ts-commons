@@ -19,7 +19,7 @@ import { DateUtil } from '@wata-nbkn/ts-commons/lib/utils';
 
 #### Commands
 
-- test: `$ DEFAULT_DATE_FORMAT=YYYY/MM/DD npm test`
+- test: `$ npm test`
 
   - You can run a single test by `$ npm test <path_to_test_file>`
   - _NOTE: When you run the mongo connector tests, you need to set `TEST_MONGO_SERVER_HOST_NAME` and `TEST_MONGO_PROT` env._
