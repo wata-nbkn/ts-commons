@@ -1,6 +1,6 @@
 {
   "name": "@wata-nbkn/ts-commons",
-  "version": "1.0.49",
+  "version": "1.0.50",
   "description": "",
   "scripts": {
     "test": "DEFAULT_DATE_FORMAT=YYYY/MM/DD jest --config=jest/jest.config.js",
