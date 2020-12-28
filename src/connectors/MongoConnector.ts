@@ -174,7 +174,6 @@ export class MongoConnector {
     for (const doc of newDocuments) {
       const _id = doc._id;
       const query = { _id };
-      delete doc._id;
 
       let updateOptions: any = {
         $set: { ...doc },
@@ -212,6 +211,20 @@ export class MongoConnector {
     return Promise.resolve({
       result: true,
     });
+  }
+
+  public async deleteDocument(collectionName: string, id: string) {
+    this.logger.debug(`Try to delete ${id} from ${collectionName}`);
+
+    const result = await this.execFunction(
+      async (db: Db) => await db.collection(collectionName).deleteOne({ _id: id })
+    );
+    if (result.error) {
+      return { error: await this.returnError(`Fail to delete ${id} from ${collectionName}`, result.error) };
+    } else {
+      this.logger.debug(`Success! ${id} is deleted from ${collectionName}`);
+      return { result: true };
+    }
   }
 
   public async ping() {

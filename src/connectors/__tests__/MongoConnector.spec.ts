@@ -6,12 +6,15 @@ describe('MongoConnector', () => {
   const testColName = 'test';
   const testDocs: object[] = [
     {
+      _id: 'a',
       value: 100,
     },
     {
+      _id: 'b',
       value: 200,
     },
     {
+      _id: 'c',
       value: 1,
     },
   ];
@@ -176,6 +179,17 @@ describe('MongoConnector', () => {
         expect(fetchResult.docs[0].name).toEqual('test3');
         expect(fetchResult.docs[0].value).toEqual(300);
       }
+    });
+  });
+
+  describe('delete', () => {
+    it('delete document', async () => {
+      const result = await mongo.deleteDocument(testColName, 'a');
+      expect(result.result).toBeTruthy();
+
+      const fetchResult = await mongo.fetchDocuments(testColName, {});
+      expect(fetchResult.docs?.find((d) => d._id === 'a')).toBeFalsy();
+      expect(fetchResult.docs?.find((d) => d._id === 'b')).toBeTruthy();
     });
   });
 
