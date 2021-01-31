@@ -2,14 +2,23 @@ import { MongoClient, Db, InsertWriteOpResult, FindOneOptions } from 'mongodb';
 import { Logger } from 'log4js';
 import { sleep } from 'utils/commonUtils';
 import { LogUtil } from 'utils/logUtils';
-
-import { MongoDocument, ErrorResponse } from 'types';
+import { MongoDocument } from 'types';
 import { INTERNAL_LOGDIR_PATH } from 'consts';
 
 const CONNECT_OPTIONS = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 };
+
+export interface ErrorResponse {
+  message: string;
+  detail?: string;
+}
+
+export interface BooleanResult {
+  result: boolean;
+  error?: ErrorResponse;
+}
 
 export interface FetchResult {
   docs?: MongoDocument[];
@@ -18,7 +27,6 @@ export interface FetchResult {
 
 export interface InsertResult {
   response?: InsertWriteOpResult<any>;
-  error?: ErrorResponse;
 }
 
 export class MongoConnector {
@@ -89,20 +97,23 @@ export class MongoConnector {
     }
   }
 
-  public async insertDocuments(collectionName: string, documents: object[]): Promise<InsertResult> {
+  public async insertDocuments(collectionName: string, documents: object[]): Promise<BooleanResult & InsertResult> {
     this.logger.debug(`Try to insert ${documents.length} docs to ${collectionName}`);
 
     const result = await this.execFunction(async (db: Db) => await db.collection(collectionName).insertMany(documents));
     if (result.error) {
-      return { error: await this.returnError(`Fail to insert docs to ${collectionName}`, result.error) };
+      return { error: await this.returnError(`Fail to insert docs to ${collectionName}`, result.error), result: false };
     } else {
       const response = result.response as InsertWriteOpResult<any>;
       this.logger.debug(`${response.ops.length} documents are inserted to ${collectionName}!`);
-      return { response };
+      return {
+        ...response,
+        result: true,
+      };
     }
   }
 
-  public async countDocuments(collectionName: string, query = {}) {
+  public async countDocuments(collectionName: string, query = {}): Promise<{ count?: number; error?: ErrorResponse }> {
     this.logger.debug(`Try to count ${collectionName} with query=${JSON.stringify(query)}`);
 
     const result = await this.execFunction(async (db: Db) => await db.collection(collectionName).countDocuments(query));
@@ -141,7 +152,7 @@ export class MongoConnector {
     findQuery?: object;
     isDesc?: boolean;
     limit?: number;
-  }) {
+  }): Promise<FetchResult> {
     const { collectionName, targetKey, findQuery = {}, isDesc = true, limit = 1 } = params;
     this.logger.debug(
       `Try to find the top ${limit} doc from ${collectionName} with "${targetKey}" and ${JSON.stringify(findQuery)}`
@@ -166,7 +177,11 @@ export class MongoConnector {
     }
   }
 
-  public async upsertDocuments(collectionName: string, newDocuments: MongoDocument[], insetOrNoUpdate = false) {
+  public async upsertDocuments(
+    collectionName: string,
+    newDocuments: MongoDocument[],
+    insetOrNoUpdate = false
+  ): Promise<BooleanResult> {
     this.logger.debug(`Try to upsert ${newDocuments.length} docs into ${collectionName}`);
 
     const failList = [];
@@ -213,14 +228,17 @@ export class MongoConnector {
     });
   }
 
-  public async deleteDocument(collectionName: string, id: string) {
+  public async deleteDocument(collectionName: string, id: string): Promise<BooleanResult> {
     this.logger.debug(`Try to delete ${id} from ${collectionName}`);
 
     const result = await this.execFunction(
       async (db: Db) => await db.collection(collectionName).deleteOne({ _id: id })
     );
     if (result.error) {
-      return { error: await this.returnError(`Fail to delete ${id} from ${collectionName}`, result.error) };
+      return {
+        error: await this.returnError(`Fail to delete ${id} from ${collectionName}`, result.error),
+        result: false,
+      };
     } else {
       this.logger.debug(`Success! ${id} is deleted from ${collectionName}`);
       return { result: true };

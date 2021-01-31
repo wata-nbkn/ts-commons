@@ -1,6 +1,6 @@
 # ts-commons
 
-This is an utility module project for TypeScript.
+Utility modules for TypeScript
 
 ## How to use
 
@@ -8,7 +8,7 @@ This is an utility module project for TypeScript.
 1. `$ echo @wata-nbkn:registry=https://npm.pkg.github.com >> .npmrc`
 1. `$ npm install --save @wata-nbkn/ts-commons`
 
-Then, you can import the modules in your ts files.
+Then, you can import modules into your ts files.
 e.g.
 
 ```.js

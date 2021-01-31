@@ -43,7 +43,7 @@ describe('MongoConnector', () => {
     it('insertDocuments', async () => {
       const result = await mongo.insertDocuments(testColName, testDocs);
       insertedIds = Object.values(result.response?.insertedIds || {});
-      expect(result.response).toBeTruthy();
+      expect(result.result).toBeTruthy();
       expect(result.error).toBeFalsy();
     });
 
