@@ -180,7 +180,8 @@ export class MongoConnector {
   public async upsertDocuments(
     collectionName: string,
     newDocuments: MongoDocument[],
-    insetOrNoUpdate = false
+    insertOrNoUpdate = false, // insert if no recode. no update if record exists.
+    overwriteUpdate = false // insert if no recode. overwrite data if record exists.
   ): Promise<BooleanResult> {
     this.logger.debug(`Try to upsert ${newDocuments.length} docs into ${collectionName}`);
 
@@ -191,9 +192,9 @@ export class MongoConnector {
       const query = { _id };
 
       let updateOptions: any = {
-        $set: { ...doc },
+        $set: overwriteUpdate ? { _id: doc._id } : { ...doc },
       };
-      if (insetOrNoUpdate) {
+      if (insertOrNoUpdate) {
         updateOptions = {
           $setOnInsert: { ...doc },
         };

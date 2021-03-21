@@ -143,7 +143,7 @@ describe('MongoConnector', () => {
       expect(doc2.value).toEqual(testDocs[1].value);
     });
 
-    it('noupdate or inset: inset', async () => {
+    it('noupdate or insert: insert', async () => {
       const testDocs = [
         {
           _id: '3',
@@ -162,7 +162,7 @@ describe('MongoConnector', () => {
       }
     });
 
-    it('noupdate or inset: update', async () => {
+    it('noupdate or inset: no update', async () => {
       const testDocs = [
         {
           _id: '3',
@@ -178,6 +178,45 @@ describe('MongoConnector', () => {
       if (fetchResult.docs) {
         expect(fetchResult.docs[0].name).toEqual('test3');
         expect(fetchResult.docs[0].value).toEqual(300);
+      }
+    });
+
+    it('overwrite update: insert', async () => {
+      const testDocs = [
+        {
+          _id: '4',
+          name: 'test4',
+          value: 400,
+        },
+      ] as any;
+      const upsertResult = await mongo.upsertDocuments(testColName, testDocs, false, false);
+      expect(upsertResult.result).toEqual(true);
+
+      const fetchResult = await mongo.fetchDocuments(testColName, { _id: '4' });
+      expect(fetchResult.docs).toBeTruthy();
+      if (fetchResult.docs) {
+        expect(fetchResult.docs[0].name).toEqual(testDocs[0].name);
+        expect(fetchResult.docs[0].value).toEqual(testDocs[0].value);
+      }
+    });
+
+    it('overwrite update: update', async () => {
+      const testDocs = [
+        {
+          _id: '4',
+          name: 'test4-2',
+          value2: 401,
+        },
+      ] as any;
+      const upsertResult = await mongo.upsertDocuments(testColName, testDocs, false, false);
+      expect(upsertResult.result).toEqual(true);
+
+      const fetchResult = await mongo.fetchDocuments(testColName, { _id: '4' });
+      expect(fetchResult.docs).toBeTruthy();
+      if (fetchResult.docs) {
+        expect(fetchResult.docs[0].name).toEqual(testDocs[0].name);
+        expect(fetchResult.docs[0].value).toBeUndefined;
+        expect(fetchResult.docs[0].value2).toEqual(testDocs[0].value2);
       }
     });
   });
