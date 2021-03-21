@@ -107,6 +107,7 @@ describe('MongoConnector', () => {
           _id: '2',
           name: 'test2',
           value: 200,
+          value2: 202,
         },
       ];
       let result = await mongo.upsertDocuments(testColName, testDocs);
@@ -128,6 +129,7 @@ describe('MongoConnector', () => {
 
           name: 'test2_edited',
           value: 2000,
+          value3: 203,
         },
       ] as any;
       let result = await mongo.upsertDocuments(testColName, testDocs);
@@ -141,6 +143,8 @@ describe('MongoConnector', () => {
       const doc2 = docs.docs?.find((d) => d._id === '2') as any;
       expect(doc2.name).toEqual(testDocs[1].name);
       expect(doc2.value).toEqual(testDocs[1].value);
+      expect(doc2.value2).toEqual(202); // not update existing value
+      expect(doc2.value3).toEqual(testDocs[1].value3);
     });
 
     it('noupdate or insert: insert', async () => {
@@ -178,45 +182,6 @@ describe('MongoConnector', () => {
       if (fetchResult.docs) {
         expect(fetchResult.docs[0].name).toEqual('test3');
         expect(fetchResult.docs[0].value).toEqual(300);
-      }
-    });
-
-    it('overwrite update: insert', async () => {
-      const testDocs = [
-        {
-          _id: '4',
-          name: 'test4',
-          value: 400,
-        },
-      ] as any;
-      const upsertResult = await mongo.upsertDocuments(testColName, testDocs, false, false);
-      expect(upsertResult.result).toEqual(true);
-
-      const fetchResult = await mongo.fetchDocuments(testColName, { _id: '4' });
-      expect(fetchResult.docs).toBeTruthy();
-      if (fetchResult.docs) {
-        expect(fetchResult.docs[0].name).toEqual(testDocs[0].name);
-        expect(fetchResult.docs[0].value).toEqual(testDocs[0].value);
-      }
-    });
-
-    it('overwrite update: update', async () => {
-      const testDocs = [
-        {
-          _id: '4',
-          name: 'test4-2',
-          value2: 401,
-        },
-      ] as any;
-      const upsertResult = await mongo.upsertDocuments(testColName, testDocs, false, false);
-      expect(upsertResult.result).toEqual(true);
-
-      const fetchResult = await mongo.fetchDocuments(testColName, { _id: '4' });
-      expect(fetchResult.docs).toBeTruthy();
-      if (fetchResult.docs) {
-        expect(fetchResult.docs[0].name).toEqual(testDocs[0].name);
-        expect(fetchResult.docs[0].value).toBeUndefined;
-        expect(fetchResult.docs[0].value2).toEqual(testDocs[0].value2);
       }
     });
   });
