@@ -5,6 +5,7 @@ export { getToday, getCurrentMonth, getCurrentYear, getMonth, getYear } from './
 export { getNextDate } from './getNextDate';
 export { getNextDateByDayOfWeek } from './getNextDateByDayOfWeek';
 export { getPreviousDate } from './getPreviousDate';
+export { getPreviousDay } from './getPreviousDay';
 export { isAfter, isBefore, isSame, isSameOrAfter, isSameOrBefore } from './compareDates';
 export { dateDiff } from './dateDiff';
 export { withInRange } from './withInRange';
